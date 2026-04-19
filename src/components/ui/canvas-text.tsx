@@ -1,7 +1,9 @@
 "use client";
 
 import React, { useRef, useEffect } from "react";
-import { cn } from "@/lib/utils";
+export function cn(...inputs: any[]) {
+  return inputs.filter(Boolean).join(" ");
+}
 
 interface CanvasTextProps {
   text: string;
