@@ -79,13 +79,9 @@ export const Hero = () => {
               
               <div 
                 className="relative z-10 bg-white rounded-2xl overflow-hidden shadow-premium border border-gray-100"
-                style={{
-                  maskImage: 'radial-gradient(circle at center, black 60%, transparent 100%)',
-                  WebkitMaskImage: 'radial-gradient(circle at center, black 60%, transparent 100%)',
-                }}
               >
                 <Image
-                  src="/dashboard.png"
+                  src="/dashboard1.png"
                   alt="Clinic Management Software Dashboard"
                   width={1200}
                   height={800}

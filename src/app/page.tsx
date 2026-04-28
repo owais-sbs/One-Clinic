@@ -1,7 +1,7 @@
 import { Navbar } from "@/components/navbar/Navbar";
 import { Hero } from "@/components/hero/Hero";
 import { Services as Features } from "@/components/services/Services";
-import { Portfolio } from "@/components/portfolio/Portfolio";
+import { ProductShowcase } from "@/components/productShowcase/ProductShowcase";
 import { WhyChooseUs } from "@/components/whyChooseUs/WhyChooseUs";
 import { Pricing } from "@/components/pricing/Pricing";
 import { Contact } from "@/components/contact/Contact";
@@ -13,7 +13,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Features />
-      <Portfolio />
+      <ProductShowcase />
       <WhyChooseUs />
       <Pricing />
       <Contact />
