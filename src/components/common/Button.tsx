@@ -9,6 +9,7 @@ interface ButtonProps {
   className?: string;
   onClick?: () => void;
   type?: "button" | "submit" | "reset";
+  disabled?: boolean;
 }
 
 export const Button: React.FC<ButtonProps> = ({ 
@@ -16,9 +17,10 @@ export const Button: React.FC<ButtonProps> = ({
   variant = "primary", 
   className = "", 
   onClick,
-  type = "button"
+  type = "button",
+  disabled = false,
 }) => {
-  const baseStyles = "px-6 py-3 rounded-full font-medium transition-all duration-300 flex items-center justify-center gap-2";
+  const baseStyles = "px-6 py-3 rounded-full font-medium transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed";
   
   const variants = {
     primary: "bg-black text-white hover:bg-gray-800",
@@ -28,9 +30,10 @@ export const Button: React.FC<ButtonProps> = ({
 
   return (
     <motion.button
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
+      whileHover={disabled ? undefined : { scale: 1.02 }}
+      whileTap={disabled ? undefined : { scale: 0.98 }}
       type={type}
+      disabled={disabled}
       className={`${baseStyles} ${variants[variant]} ${className}`}
       onClick={onClick}
     >

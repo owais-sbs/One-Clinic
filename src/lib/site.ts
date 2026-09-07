@@ -1,0 +1,31 @@
+export const siteConfig = {
+  name: "One Clinic",
+  company: "OnePath Solutions",
+  title: "One Clinic | Clinic Management Software for UAE, Saudi & Hyderabad",
+  description:
+    "Clinic software, hospital management systems, and patient management solutions for Dubai, Sharjah, Ajman, Riyadh, Jeddah, Dammam, and Hyderabad. Built for maternity, neurology, and multi-specialty clinics.",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://onepathsolutions.com",
+  email: "info@onepathsolutions.com",
+  phone: "+91 86868 36147",
+  phoneHref: "+918686836147",
+  headquarters:
+    "8-1-21/146, Level 1, Mirza Arcade, Shaikpet Rd, Surya Nagar, Toli Chowki, Hyderabad, Telangana 500008",
+  keywords: [
+    "clinic management software",
+    "clinic software",
+    "clinic solutions",
+    "hospital management system",
+    "hospital management solution",
+    "patient management system",
+    "patient management solution",
+    "clinic software Dubai",
+    "clinic software UAE",
+    "hospital management Riyadh",
+    "clinic software Jeddah",
+    "clinic software Hyderabad",
+    "maternity clinic software",
+    "neurology clinic software",
+    "One Clinic",
+    "OnePath Solutions",
+  ],
+};

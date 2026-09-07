@@ -7,7 +7,7 @@ import { Container } from "../common/Container";
 import { Section } from "../common/Section";
 import { Button } from "../common/Button";
 
-import { CheckCircle2, Star, ShieldCheck } from "lucide-react";
+import { CheckCircle2, ShieldCheck } from "lucide-react";
 
 export const Hero = () => {
   return (
@@ -33,8 +33,8 @@ export const Hero = () => {
               Build, manage, and scale your healthcare business with our modern digital clinic management platform. We develop complete maternity and healthcare management systems.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
-              <Button variant="primary" className="h-12 px-8 text-base">Request Demo</Button>
-              <Button variant="outline" className="h-12 px-8 text-base border-gray-200">View Software</Button>
+              <Button variant="primary" className="h-12 px-8 text-base" onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}>Request Demo</Button>
+              <Button variant="outline" className="h-12 px-8 text-base border-gray-200" onClick={() => document.getElementById("features")?.scrollIntoView({ behavior: "smooth" })}>View Software</Button>
             </div>
             
             <div className="grid grid-cols-3 gap-8 py-6 border-t border-gray-100 w-full">

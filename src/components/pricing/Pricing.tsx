@@ -10,7 +10,7 @@ import { motion } from "framer-motion";
 const plans = [
   {
     name: "Starter",
-    price: "49",
+    price: "20",
     description: "Perfect for small clinics and individual practitioners.",
     features: [
       "Up to 500 Patients",
@@ -22,7 +22,7 @@ const plans = [
   },
   {
     name: "Professional",
-    price: "99",
+    price: "35",
     description: "Ideal for growing clinics with multiple providers.",
     popular: true,
     features: [
@@ -120,6 +120,7 @@ export const Pricing = () => {
               <Button 
                 variant={plan.popular ? "primary" : "outline"} 
                 className="w-full h-12"
+                onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
               >
                 Get Demo
               </Button>

@@ -11,6 +11,11 @@
   --shadow-soft: 0 10px 40px -10px rgba(0, 0, 0, 0.05);
   
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-arabic: var(--font-arabic), "Noto Sans Arabic", ui-sans-serif, sans-serif;
+}
+
+.font-arabic {
+  font-family: var(--font-arabic), "Noto Sans Arabic", ui-sans-serif, sans-serif;
 }
 
 html {
