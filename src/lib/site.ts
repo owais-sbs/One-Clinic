@@ -1,9 +1,9 @@
 export const siteConfig = {
   name: "One Clinic",
   company: "OnePath Solutions",
-  title: "One Clinic | Clinic Management Software for UAE, Saudi & Hyderabad",
+  title: "One Clinic | Software for Maternity, Cardiology, Pediatrics & Multi-Specialty Clinics",
   description:
-    "Clinic software, hospital management systems, and patient management solutions for Dubai, Sharjah, Ajman, Riyadh, Jeddah, Dammam, and Hyderabad. Built for maternity, neurology, and multi-specialty clinics.",
+    "Clinic and hospital management software for maternity, neurology, cardiology, pediatrics, dentistry, dermatology, orthopedics, and multi-specialty practices. Scheduling, records, billing, and follow-up in one system.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://one-clinic.onepathsolutions.com",
   email: "info@onepathsolutions.com",
   phone: "+91 86868 36147",
