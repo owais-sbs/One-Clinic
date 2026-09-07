@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Noto_Sans_Arabic } from "next/font/google";
 import "./globals.css";
 import { siteConfig } from "@/lib/site";
+import { shareImages } from "@/lib/seo";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -45,11 +46,13 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     title: siteConfig.title,
     description: siteConfig.description,
+    images: shareImages,
   },
   twitter: {
     card: "summary_large_image",
     title: siteConfig.title,
     description: siteConfig.description,
+    images: shareImages,
   },
   robots: {
     index: true,

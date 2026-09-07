@@ -16,59 +16,38 @@ export default function OpenGraphImage() {
           height: "100%",
           background: "#ffffff",
           display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          padding: 72,
+          alignItems: "center",
+          paddingLeft: 90,
+          paddingRight: 90,
           fontFamily: "sans-serif",
         }}
       >
         <div
           style={{
+            width: 360,
+            height: 360,
+            background: "#000",
+            borderRadius: 80,
             display: "flex",
             alignItems: "center",
-            gap: 20,
+            justifyContent: "center",
+            color: "#fff",
+            fontSize: 180,
+            fontWeight: 800,
+            marginRight: 56,
           }}
         >
-          <div
-            style={{
-              width: 72,
-              height: 72,
-              background: "#000",
-              borderRadius: 18,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "#fff",
-              fontSize: 36,
-              fontWeight: 800,
-            }}
-          >
-            C+
-          </div>
-          <div
-            style={{
-              fontSize: 32,
-              fontWeight: 700,
-              color: "#000",
-            }}
-          >
+          C+
+        </div>
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <div style={{ fontSize: 72, fontWeight: 800, color: "#000", letterSpacing: -2 }}>
             One Clinic
           </div>
-        </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
-          <div
-            style={{
-              fontSize: 68,
-              fontWeight: 800,
-              lineHeight: 1.1,
-              color: "#000",
-              letterSpacing: -2,
-            }}
-          >
-            Clinic Management Software for Hospitals.
+          <div style={{ fontSize: 28, color: "#4b5563", marginTop: 12 }}>
+            Clinic management software
           </div>
-          <div style={{ fontSize: 28, color: "#4b5563", maxWidth: 820 }}>
-            Modern healthcare operations, scheduling, billing, and patient records — built by OnePath Solutions.
+          <div style={{ fontSize: 28, color: "#4b5563", marginTop: 6 }}>
+            OnePath Solutions
           </div>
         </div>
       </div>

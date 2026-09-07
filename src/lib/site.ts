@@ -4,7 +4,7 @@ export const siteConfig = {
   title: "One Clinic | Clinic Management Software for UAE, Saudi & Hyderabad",
   description:
     "Clinic software, hospital management systems, and patient management solutions for Dubai, Sharjah, Ajman, Riyadh, Jeddah, Dammam, and Hyderabad. Built for maternity, neurology, and multi-specialty clinics.",
-  url: process.env.NEXT_PUBLIC_SITE_URL || "https://onepathsolutions.com",
+  url: process.env.NEXT_PUBLIC_SITE_URL || "https://one-clinic.onepathsolutions.com",
   email: "info@onepathsolutions.com",
   phone: "+91 86868 36147",
   phoneHref: "+918686836147",
