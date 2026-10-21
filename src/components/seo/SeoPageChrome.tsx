@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { Navbar } from "@/components/navbar/Navbar";
 import { Footer } from "@/components/footer/Footer";
+import { WhatsAppFloat } from "@/components/common/WhatsAppFloat";
 import { HtmlLang } from "@/components/seo/HtmlLang";
 import type { Locale } from "@/lib/i18n";
 
@@ -19,6 +20,7 @@ export function SeoPageChrome({
       <Navbar locale={locale} currentPath={currentPath} />
       {children}
       <Footer locale={locale} />
+      <WhatsAppFloat />
     </main>
   );
 }

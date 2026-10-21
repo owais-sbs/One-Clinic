@@ -9,6 +9,7 @@ import { SpecialtyStrip } from "@/components/specialties/SpecialtyStrip";
 import { Pricing } from "@/components/pricing/Pricing";
 import { Contact } from "@/components/contact/Contact";
 import { Footer } from "@/components/footer/Footer";
+import { WhatsAppFloat } from "@/components/common/WhatsAppFloat";
 import { siteConfig } from "@/lib/site";
 import { pageMetadata } from "@/lib/seo";
 
@@ -39,6 +40,7 @@ export default function Home() {
       <Pricing />
       <Contact locale="en" />
       <Footer locale="en" />
+      <WhatsAppFloat />
     </main>
   );
 }

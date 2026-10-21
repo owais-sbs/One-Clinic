@@ -28,8 +28,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...combos.map((combo) => `/locations/${combo.country}/${combo.city}/${combo.pathSegment}`),
   ];
 
-  return englishPaths.flatMap((path) => [
-    entry(localizePath(path, "en"), path === "/" ? 1 : 0.8),
-    entry(localizePath(path, "ar"), path === "/" ? 0.9 : 0.7),
-  ]);
+  const legalPaths = ["/privacy-policy", "/terms"];
+
+  return [
+    ...englishPaths.flatMap((path) => [
+      entry(localizePath(path, "en"), path === "/" ? 1 : 0.8),
+      entry(localizePath(path, "ar"), path === "/" ? 0.9 : 0.7),
+    ]),
+    ...legalPaths.map((path) => entry(path, 0.5)),
+  ];
 }

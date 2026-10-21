@@ -8,6 +8,7 @@ import { Container } from "../common/Container";
 import { Section } from "../common/Section";
 import { Button } from "../common/Button";
 import { Card } from "../common/Card";
+import Link from "next/link";
 import type { Locale } from "@/lib/i18n";
 import { siteConfig } from "@/lib/site";
 
@@ -27,7 +28,11 @@ const copy = {
     message: "Message",
     sending: "Sending...",
     submit: "Schedule a Demo",
-    legal: "By submitting, you agree to our Privacy Policy and Terms of Service.",
+    legalBefore: "By submitting, you agree to our ",
+    privacy: "Privacy Policy",
+    legalAnd: " and ",
+    terms: "Terms of Service",
+    legalAfter: ".",
     heritage: "Our Heritage",
     heritageText: "Empowering clinics since the beginning of digital healthcare.",
     success: "Thanks — we received your request and will be in touch shortly.",
@@ -48,7 +53,11 @@ const copy = {
     message: "الرسالة",
     sending: "جارٍ الإرسال...",
     submit: "حدد موعد العرض",
-    legal: "بالإرسال توافقون على سياسة الخصوصية وشروط الخدمة.",
+    legalBefore: "بالإرسال توافقون على ",
+    privacy: "سياسة الخصوصية",
+    legalAnd: " و",
+    terms: "شروط الخدمة",
+    legalAfter: ".",
     heritage: "إرثنا",
     heritageText: "نمكّن العيادات منذ بداية الرعاية الصحية الرقمية.",
     success: "شكراً — استلمنا طلبكم وسنتواصل قريباً.",
@@ -191,7 +200,15 @@ export const Contact = ({ locale = "en" }: { locale?: Locale }) => {
                   </p>
                 )}
                 <p className="text-center text-[10px] text-gray-400 mt-4">
-                  {copy[locale].legal}
+                  {copy[locale].legalBefore}
+                  <Link href="/privacy-policy" className="underline hover:text-black">
+                    {copy[locale].privacy}
+                  </Link>
+                  {copy[locale].legalAnd}
+                  <Link href="/terms" className="underline hover:text-black">
+                    {copy[locale].terms}
+                  </Link>
+                  {copy[locale].legalAfter}
                 </p>
               </form>
             </Card>

@@ -66,6 +66,10 @@ export const metadata: Metadata = {
     },
   },
   category: "healthcare",
+  icons: {
+    icon: [{ url: "/faviconicon.png", type: "image/png" }],
+    apple: [{ url: "/faviconicon.png", type: "image/png" }],
+  },
 };
 
 export const viewport: Viewport = {

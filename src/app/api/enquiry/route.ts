@@ -1,11 +1,16 @@
 import { NextResponse } from "next/server";
-import { escapeHtml, getEnquiryInbox, getMailFrom, getMailer } from "@/lib/mail";
+import {
+  buildEnquiryEmailHtml,
+  escapeHtml,
+  getEnquiryInbox,
+  getMailFrom,
+  getMailer,
+} from "@/lib/mail";
+import { siteConfig } from "@/lib/site";
 
 export const runtime = "nodejs";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-type EnquiryType = "demo" | "newsletter";
 
 function asString(value: unknown) {
   return typeof value === "string" ? value.trim() : "";
@@ -24,33 +29,15 @@ export async function POST(request: Request) {
     return invalid("Invalid request body.");
   }
 
-  const type = (asString(body.type) || "demo") as EnquiryType;
+  const type = asString(body.type) || "demo";
   const email = asString(body.email);
 
-  if (type !== "demo" && type !== "newsletter") {
+  if (type !== "demo") {
     return invalid("Unknown form type.");
   }
 
   if (!emailPattern.test(email)) {
     return invalid("Please enter a valid email address.");
-  }
-
-  if (type === "newsletter") {
-    try {
-      await sendMail({
-        subject: `New newsletter signup: ${email}`,
-        replyTo: email,
-        text: `A visitor subscribed to the One Clinic newsletter.\n\nEmail: ${email}`,
-        html: `
-          <h2>New newsletter signup</h2>
-          <p><strong>Email:</strong> ${escapeHtml(email)}</p>
-        `,
-      });
-      return NextResponse.json({ ok: true });
-    } catch (error) {
-      console.error("Failed to send newsletter email", error);
-      return invalid("Unable to send your request right now. Please try again.", 500);
-    }
   }
 
   const name = asString(body.name);
@@ -65,52 +52,79 @@ export async function POST(request: Request) {
     return invalid("Please enter your clinic or hospital name.");
   }
 
+  const rows = [
+    { label: "Name", value: name },
+    { label: "Email", value: email, href: `mailto:${email}` },
+    { label: "Clinic", value: clinic },
+    { label: "Message", value: message || "(none)" },
+  ];
+
+  const text = [
+    "A new software demo request was submitted.",
+    "",
+    `Name: ${name}`,
+    `Email: ${email}`,
+    `Clinic / Hospital: ${clinic}`,
+    `Message: ${message || "(none)"}`,
+  ].join("\n");
+
+  const confirmationHtml = buildEnquiryEmailHtml({
+    brand: siteConfig.name,
+    recipientName: name,
+    rows,
+    contactEmail: siteConfig.email,
+    contactPhone: siteConfig.phone,
+  });
+
+  const notifyHtml = `
+    <div style="font-family:Arial,Helvetica,sans-serif;color:#111827;">
+      <h2 style="margin:0 0 12px;">New software demo request</h2>
+      <p style="margin:0 0 8px;"><strong>Name:</strong> ${escapeHtml(name)}</p>
+      <p style="margin:0 0 8px;"><strong>Email:</strong> ${escapeHtml(email)}</p>
+      <p style="margin:0 0 8px;"><strong>Clinic / Hospital:</strong> ${escapeHtml(clinic)}</p>
+      <p style="margin:0 0 8px;"><strong>Message:</strong></p>
+      <p style="margin:0;">${escapeHtml(message || "(none)").replaceAll("\n", "<br />")}</p>
+    </div>
+  `;
+
   try {
-    await sendMail({
-      subject: `New demo request from ${name}`,
-      replyTo: email,
-      text: [
-        "A new software demo request was submitted.",
-        "",
-        `Name: ${name}`,
-        `Email: ${email}`,
-        `Clinic / Hospital: ${clinic}`,
-        `Message: ${message || "(none)"}`,
-      ].join("\n"),
-      html: `
-        <h2>New software demo request</h2>
-        <p><strong>Name:</strong> ${escapeHtml(name)}</p>
-        <p><strong>Email:</strong> ${escapeHtml(email)}</p>
-        <p><strong>Clinic / Hospital:</strong> ${escapeHtml(clinic)}</p>
-        <p><strong>Message:</strong></p>
-        <p>${escapeHtml(message || "(none)").replaceAll("\n", "<br />")}</p>
-      `,
-    });
+    const transporter = getMailer();
+    const from = getMailFrom();
+    const inbox = getEnquiryInbox();
+
+    await Promise.all([
+      transporter.sendMail({
+        from,
+        to: inbox,
+        replyTo: email,
+        subject: `New demo request from ${name}`,
+        text,
+        html: notifyHtml,
+      }),
+      transporter.sendMail({
+        from,
+        to: email,
+        subject: `Your request is noted — ${siteConfig.name}`,
+        text: [
+          `Hi ${name},`,
+          "",
+          `Thank you for contacting ${siteConfig.name}. Your request has been received and our team will get back to you shortly.`,
+          "",
+          "Your submission",
+          `Name: ${name}`,
+          `Email: ${email}`,
+          `Clinic / Hospital: ${clinic}`,
+          `Message: ${message || "(none)"}`,
+          "",
+          `If you need anything urgently, reach us at ${siteConfig.email} or ${siteConfig.phone}.`,
+        ].join("\n"),
+        html: confirmationHtml,
+      }),
+    ]);
+
     return NextResponse.json({ ok: true });
   } catch (error) {
     console.error("Failed to send demo enquiry", error);
     return invalid("Unable to send your request right now. Please try again.", 500);
   }
-}
-
-async function sendMail({
-  subject,
-  replyTo,
-  text,
-  html,
-}: {
-  subject: string;
-  replyTo: string;
-  text: string;
-  html: string;
-}) {
-  const transporter = getMailer();
-  await transporter.sendMail({
-    from: getMailFrom(),
-    to: getEnquiryInbox(),
-    replyTo,
-    subject,
-    text,
-    html,
-  });
 }

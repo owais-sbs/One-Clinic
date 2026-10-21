@@ -6,10 +6,12 @@ export const siteConfig = {
     "Clinic and hospital management software for maternity, neurology, cardiology, pediatrics, dentistry, dermatology, orthopedics, and multi-specialty practices. Scheduling, records, billing, and follow-up in one system.",
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://one-clinic.onepathsolutions.com",
   email: "info@onepathsolutions.com",
-  phone: "+91 86868 36147",
-  phoneHref: "+918686836147",
+  phone: "+91 96523 01382",
+  phoneHref: "+919652301382",
+  whatsappHref: "https://wa.me/919652301382",
   headquarters:
-    "8-1-21/146, Level 1, Mirza Arcade, Shaikpet Rd, Surya Nagar, Toli Chowki, Hyderabad, Telangana 500008",
+    "8-1-21/146, Level 1, Mirza Arcade,\nShaikpet Rd, Toli Chowki,\nHyderabad, Telangana 500008",
+  ownerUrl: "https://onepathsolutions.com/",
   keywords: [
     "clinic management software",
     "clinic software",
